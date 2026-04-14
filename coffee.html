@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Selection - Bean Boutique</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><i class="fas fa-mug-hot"></i> Bean Boutique</div>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="coffee.html"><i class="fas fa-coffee"></i> Coffee</a></li>
+        <li><a href="equipment.html"><i class="fas fa-tools"></i> Equipment</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-bag"></i> Cart</a></li>
+        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+    </ul>
+</nav>
+
+<header class="small-header coffee-header">
+    <h1>Our Coffee Selection</h1>
+    <p>Discover our premium blends from around the world</p>
+</header>
+
+<section class="search-section">
+    <h2 class="visually-hidden">Search Coffee</h2>
+    <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchBar" placeholder="Search coffee by name or flavor..." onkeyup="searchCoffee()">
+    </div>
+</section>
+
+<section class="coffee-container" id="coffeeList">
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/4862099/pexels-photo-4862099.jpeg" alt="Espresso Blend">
+        </div>
+        <div class="coffee-info">
+            <h2>Espresso Blend</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rich and bold flavour with dark chocolate notes and a creamy finish.</p>
+            <div class="price">$12.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Espresso Blend', 12.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/28460693/pexels-photo-28460693.jpeg" alt="Decaf Coffee">
+        </div>
+        <div class="coffee-info">
+            <h2>Decaf Coffee</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>milder, smoother, and sweeter flavor compared to regular coffee, often with reduced bitterness and acidity.</p>
+            <div class="price">$16.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Decaf Coffee', 16.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=600" alt="French Roast">
+        </div>
+        <div class="coffee-info">
+            <h2>French Roast</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>Dark roast with smoky, intense flavour and notes of dark caramel.</p>
+            <div class="price">$13.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('French Roast', 13.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hazelnut Coffee">
+        </div>
+        <div class="coffee-info">
+            <h2>Hazelnut Coffee</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Nutty, sweet flavour with hints of vanilla and a smooth finish.</p>
+            <div class="price">$15.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Hazelnut Coffee', 15.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+</section>
+
+<div id="toast" class="toast"><i class="fas fa-check-circle"></i> Added to cart!</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><i class="fas fa-heart"></i> © 2026 Bean Boutique — Where every bean tells a story <i class="fas fa-heart"></i></p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <p>📍 322 Coffee Lane, Seattle | 🌿 Fresh roast delivered worldwide</p>
+</footer>
+
+<script>
+function searchCoffee() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let cards = document.getElementsByClassName("coffee-card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        if (text.includes(input)) {
+            cards[i].style.display = "flex";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    cart.push({ name: name, price: price });
+    localStorage.setItem('coffeeCart', JSON.stringify(cart));
+    
+    // Show toast notification
+    let toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
