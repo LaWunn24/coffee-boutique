@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Workshops - Bean Boutique</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo"><i class="fas fa-mug-hot"></i> Bean Boutique</div>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="coffee.html"><i class="fas fa-coffee"></i> Coffee</a></li>
+        <li><a href="equipment.html"><i class="fas fa-tools"></i> Equipment</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-bag"></i> Cart</a></li>
+        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+    </ul>
+</nav>
+
+<header class="small-header events-header">
+    <h1>Events & Workshops</h1>
+    <p>Join our coffee experiences and master the art of brewing</p>
+</header>
+
+<section class="events-container">
+    <div class="event-card">
+        <div class="event-icon"><i class="fas fa-mug-hot"></i></div>
+        <h2>Coffee Tasting Session</h2>
+        <p>Explore different coffee flavours and origins from around the world.</p>
+        <div class="event-details">
+            <span><i class="fas fa-calendar"></i> May 10, 2026</span>
+            <span><i class="fas fa-clock"></i> 10:00 AM - 12:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Bean Boutique Lab</span>
+        </div>
+        <div class="event-price">$25 per person</div>
+        <button class="register-btn" onclick="openRegistration('Coffee Tasting Session', 25)">Register Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="event-card">
+        <div class="event-icon"><i class="fas fa-chalkboard-user"></i></div>
+        <h2>Brewing Masterclass</h2>
+        <p>Learn professional brewing techniques from our master baristas.</p>
+        <div class="event-details">
+            <span><i class="fas fa-calendar"></i> May 18, 2026</span>
+            <span><i class="fas fa-clock"></i> 2:00 PM - 5:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Bean Boutique Lab</span>
+        </div>
+        <div class="event-price">$45 per person</div>
+        <button class="register-btn" onclick="openRegistration('Brewing Masterclass', 45)">Register Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="event-card">
+        <div class="event-icon"><i class="fas fa-fire"></i></div>
+        <h2>Meet the Roaster</h2>
+        <p>Discover how coffee beans are roasted and learn about the roasting process.</p>
+        <div class="event-details">
+            <span><i class="fas fa-calendar"></i> May 25, 2026</span>
+            <span><i class="fas fa-clock"></i> 11:00 AM - 1:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Roastery Tour</span>
+        </div>
+        <div class="event-price">$35 per person</div>
+        <button class="register-btn" onclick="openRegistration('Meet the Roaster', 35)">Register Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="event-card">
+        <div class="event-icon"><i class="fas fa-heart"></i></div>
+        <h2>Latte Art Workshop</h2>
+        <p>Learn to create beautiful latte art designs like a professional.</p>
+        <div class="event-details">
+            <span><i class="fas fa-calendar"></i> June 5, 2026</span>
+            <span><i class="fas fa-clock"></i> 3:00 PM - 6:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Bean Boutique Lab</span>
+        </div>
+        <div class="event-price">$50 per person</div>
+        <button class="register-btn" onclick="openRegistration('Latte Art Workshop', 50)">Register Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+</section>
+
+<div id="registerModal" class="modal">
+    <div class="modal-content register-modal">
+        <span class="close">&times;</span>
+        <i class="fas fa-clipboard-list form-icon"></i>
+        <h2>Register for Event</h2>
+        <form id="registrationForm" action="mailto:events@beanboutique.com" method="POST" enctype="text/plain">
+            <input type="text" id="eventName" name="Event" class="event-input" readonly>
+            <input type="text" id="eventPrice" name="Price" class="event-input" readonly style="display: none;">
+            <input type="text" id="firstName" name="First Name" placeholder="First Name" required>
+            <input type="text" id="lastName" name="Last Name" placeholder="Last Name" required>
+            <input type="email" id="email" name="Email" placeholder="Email Address" required>
+            <input type="tel" id="phone" name="Phone Number" placeholder="Phone Number (optional)">
+            <button type="submit">Complete Registration <i class="fas fa-check"></i></button>
+        </form>
+        <p class="email-note"><i class="fas fa-envelope"></i> Your registration will be sent to our events team via email</p>
+    </div>
+</div>
+
+<div id="toast" class="toast"><i class="fas fa-check-circle"></i> Registration sent!</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="weather-mini">
+            <i class="fas fa-cloud-sun"></i> 
+            <span>Seattle · 68°F · ☁️</span>
+            <small>Perfect coffee weather</small>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+    </div>
+    <p><i class="fas fa-heart"></i> © 2026 Bean Boutique — Where every bean tells a story <i class="fas fa-heart"></i></p>
+    <p>📍 322 Coffee Lane, Seattle | 🌿 Fresh roast delivered worldwide</p>
+  <div class="security-badge">
+    <i class="fas fa-shield-alt"></i> SSL Encrypted | Your payment data is secure
+</div>
+</footer>
+
+<script>
+let currentEventName = '';
+let currentEventPrice = '';
+
+function openRegistration(eventName, eventPrice) {
+    let modal = document.getElementById('registerModal');
+    currentEventName = eventName;
+    currentEventPrice = eventPrice;
+    document.getElementById('eventName').value = eventName;
+    document.getElementById('eventPrice').value = '$' + eventPrice;
+    modal.style.display = "flex";
+}
+
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let firstName = document.getElementById('firstName').value;
+    let lastName = document.getElementById('lastName').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value || 'Not provided';
+    let eventName = document.getElementById('eventName').value;
+    let eventPrice = document.getElementById('eventPrice').value;
+    
+    let subject = encodeURIComponent(`Event Registration: ${eventName}`);
+    let body = encodeURIComponent(
+        `Hello Bean Boutique Events Team,\n\n` +
+        `I would like to register for the following event:\n\n` +
+        `Event: ${eventName}\n` +
+        `Price: ${eventPrice}\n\n` +
+        `My Details:\n` +
+        `Name: ${firstName} ${lastName}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone}\n\n` +
+        `Please send me confirmation and payment instructions.\n\n` +
+        `Thank you!`
+    );
+    
+    window.location.href = `mailto:events@beanboutique.com?subject=${subject}&body=${body}`;
+    
+    let toast = document.getElementById('toast');
+    toast.innerHTML = '<i class="fas fa-check-circle"></i> Registration sent to events@beanboutique.com!';
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+    
+    // Close modal and reset form
+    document.getElementById('registerModal').style.display = "none";
+    document.getElementById('registrationForm').reset();
+});
+
+document.querySelector('#registerModal .close').onclick = function() {
+    document.getElementById('registerModal').style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target === document.getElementById('registerModal')) {
+        document.getElementById('registerModal').style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

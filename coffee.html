@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Selection - Bean Boutique</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo"><i class="fas fa-mug-hot"></i> Bean Boutique</div>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="coffee.html"><i class="fas fa-coffee"></i> Coffee</a></li>
+        <li><a href="equipment.html"><i class="fas fa-tools"></i> Equipment</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-bag"></i> Cart</a></li>
+        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+    </ul>
+</nav>
+
+<header class="small-header coffee-header">
+    <h1>Our Coffee Selection</h1>
+    <p>Discover our premium blends from around the world</p>
+</header>
+
+<section class="search-section">
+    <h2 class="visually-hidden">Search Coffee</h2>
+    <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchBar" placeholder="Search coffee by name or flavor..." onkeyup="searchCoffee()">
+    </div>
+</section>
+
+<section class="coffee-container" id="coffeeList">
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/4862099/pexels-photo-4862099.jpeg" alt="Espresso Blend">
+        </div>
+        <div class="coffee-info">
+            <h2>Espresso Blend</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p><strong>Tasting Notes:</strong> Dark chocolate, caramel, toasted nuts</p>
+            <p><strong>Brewing Method:</strong> Espresso machine, Moka pot</p>
+            <div class="price">$12.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Espresso Blend', 12.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/28460693/pexels-photo-28460693.jpeg" alt="Decaf Coffee">
+        </div>
+        <div class="coffee-info">
+            <h2>Decaf Coffee</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p><strong>Tasting Notes:</strong> Milder, smoother, reduced bitterness, sweet finish</p>
+            <p><strong>Brewing Method:</strong> French press, Pour over, Drip machine</p>
+            <div class="price">$16.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Decaf Coffee', 16.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=600" alt="French Roast">
+        </div>
+        <div class="coffee-info">
+            <h2>French Roast</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p><strong>Tasting Notes:</strong> Smoky, intense, dark caramel, low acidity</p>
+            <p><strong>Brewing Method:</strong> French press, Espresso, Cold brew</p>
+            <div class="price">$13.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('French Roast', 13.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="coffee-card">
+        <div class="coffee-image">
+            <img src="https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hazelnut Coffee">
+        </div>
+        <div class="coffee-info">
+            <h2>Hazelnut Coffee</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p><strong>Tasting Notes:</strong> Nutty, sweet, vanilla, smooth finish</p>
+            <p><strong>Brewing Method:</strong> Pour over, Drip machine, French press</p>
+            <div class="price">$15.99 <span>/ 250g</span></div>
+            <button class="add-to-cart" onclick="addToCart('Hazelnut Coffee', 15.99)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<section class="rating-section">
+    <h2><i class="fas fa-chart-line"></i> Rate Your Favorite Coffee</h2>
+    <div class="rating-widget">
+        <p>How would you rate our coffee selection?</p>
+        <select id="ratingSelect" class="rating-select">
+            <option value="">-- Select a rating --</option>
+            <option value="1">⭐ 1 Star - Poor</option>
+            <option value="2">⭐⭐ 2 Stars - Fair</option>
+            <option value="3">⭐⭐⭐ 3 Stars - Good</option>
+            <option value="4">⭐⭐⭐⭐ 4 Stars - Very Good</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5 Stars - Excellent!</option>
+        </select>
+        <p id="selectFeedback" class="rating-feedback"></p>
+    </div>
+</section>
+
+<div id="toast" class="toast"><i class="fas fa-check-circle"></i> Added to cart!</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="weather-mini">
+            <i class="fas fa-cloud-sun"></i> 
+            <span>Seattle · 68°F · ☁️</span>
+            <small>Perfect coffee weather</small>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+    </div>
+    <p><i class="fas fa-heart"></i> © 2026 Bean Boutique — Where every bean tells a story <i class="fas fa-heart"></i></p>
+    <p>📍 322 Coffee Lane, Seattle | 🌿 Fresh roast delivered worldwide</p>
+   <div class="security-badge">
+    <i class="fas fa-shield-alt"></i> SSL Encrypted | Your payment data is secure
+</div>
+</footer>
+
+<script>
+// Animated Search Function
+function searchCoffee() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let cards = document.getElementsByClassName("coffee-card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        if (text.includes(input)) {
+            cards[i].style.display = "flex";
+            cards[i].style.animation = "fadeInUp 0.3s ease";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    cart.push({ name: name, price: price });
+    localStorage.setItem('coffeeCart', JSON.stringify(cart));
+    
+    let toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
+}
+
+let ratingSelect = document.getElementById('ratingSelect');
+let selectFeedback = document.getElementById('selectFeedback');
+
+// Load saved rating from localStorage
+let savedRating = localStorage.getItem('coffeeRating');
+if (savedRating) {
+    ratingSelect.value = savedRating;
+    let messages = {
+        1: '😔 Thanks for your feedback! We will work to improve.',
+        2: '🙁 We appreciate your honesty. We will do better!',
+        3: '😐 Glad you enjoyed it! Any suggestions to make it 5 stars?',
+        4: '😊 Great! What would make it perfect?',
+        5: '❤️ Amazing! Thank you for loving our coffee!'
+    };
+    selectFeedback.textContent = messages[savedRating];
+    selectFeedback.style.display = 'block';
+}
+
+ratingSelect.addEventListener('change', function() {
+    let rating = this.value;
+    
+    if (rating === "") {
+        selectFeedback.style.display = 'none';
+        return;
+    }
+    
+    let messages = {
+        1: '😔 Thanks for your feedback! We will work to improve.',
+        2: '🙁 We appreciate your honesty. We will do better!',
+        3: '😐 Glad you enjoyed it! Any suggestions to make it 5 stars?',
+        4: '😊 Great! What would make it perfect?',
+        5: '❤️ Amazing! Thank you for loving our coffee!'
+    };
+    
+    selectFeedback.textContent = messages[rating];
+    selectFeedback.style.display = 'block';
+    
+    // Save to localStorage
+    localStorage.setItem('coffeeRating', rating);
+});
+</script>
+
+</body>
+</html>
