@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Bean Boutique</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="logo"><i class="fas fa-mug-hot"></i> Bean Boutique</div>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="coffee.html"><i class="fas fa-coffee"></i> Coffee</a></li>
+        <li><a href="equipment.html"><i class="fas fa-tools"></i> Equipment</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-bag"></i> Cart</a></li>
+        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+    </ul>
+</nav>
+
+<!-- Page Header -->
+<header class="small-header cart-header">
+    <h1>Your Shopping Cart</h1>
+    <p>Review your items and proceed to checkout</p>
+</header>
+
+<!-- Plugin 3: Shopping Cart with Quantity Management -->
+<section class="cart-section">
+    <div class="cart-container">
+        <div class="cart-items">
+            <h2><i class="fas fa-shopping-bag"></i> Cart Items</h2>
+            <div id="cartItemsList">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <a href="coffee.html" class="shop-now">Shop Now →</a>
+                </div>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-details">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()"><i class="fas fa-credit-card"></i> Proceed to Checkout</button>
+            <button class="clear-cart" onclick="clearCart()"><i class="fas fa-trash"></i> Clear Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h3>Features</h3>
+            <ul>
+                <li><a href="coffee.html">Fresh Roasts</a></li>
+                <li><a href="equipment.html">Brewing Gear</a></li>
+                <li><a href="offers.html">Subscriptions</a></li>
+                <li><a href="events.html">Workshops</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About Bean Boutique</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Brand Center</a></li>
+                <li><a href="#">Sustainability</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Policies</h3>
+            <ul>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Download</h3>
+            <ul>
+                <li><a href="#">iOS App</a></li>
+                <li><a href="#">Android App</a></li>
+                <li><a href="#">Rewards Program</a></li>
+                <li><a href="#">Gift Cards</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Order Tracking</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="security-badge">
+        <i class="fas fa-shield-alt"></i> SSL Encrypted | Your payment data is secure
+    </div>
+</footer>
+
+<script>
+// Load and display cart items from localStorage
+function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    let cartItemsDiv = document.getElementById('cartItemsList');
+    
+    if (cart.length === 0) {
+        cartItemsDiv.innerHTML = `<div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Your cart is empty</p>
+            <a href="coffee.html" class="shop-now">Shop Now →</a>
+        </div>`;
+        document.getElementById('subtotal').innerText = '$0.00';
+        document.getElementById('total').innerText = '$0.00';
+        return;
+    }
+    
+    let html = '<div class="cart-items-list">';
+    let subtotal = 0;
+    
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        html += `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <p>$${item.price.toFixed(2)} each</p>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                        <span class="qty-value">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        <span class="item-total">$${itemTotal.toFixed(2)}</span>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeItem(${index})"><i class="fas fa-trash-alt"></i> Remove</button>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    cartItemsDiv.innerHTML = html;
+    document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
+    document.getElementById('total').innerText = `$${subtotal.toFixed(2)}`;
+}
+
+// Update item quantity
+function updateQuantity(index, change) {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    let newQuantity = cart[index].quantity + change;
+    
+    if (newQuantity < 1) {
+        cart.splice(index, 1);
+    } else {
+        cart[index].quantity = newQuantity;
+    }
+    
+    localStorage.setItem('coffeeCart', JSON.stringify(cart));
+    loadCart();
+}
+
+// Remove single item from cart
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    cart.splice(index, 1);
+    localStorage.setItem('coffeeCart', JSON.stringify(cart));
+    loadCart();
+}
+
+// Clear entire cart
+function clearCart() {
+    if (confirm('Are you sure you want to clear your cart?')) {
+        localStorage.removeItem('coffeeCart');
+        loadCart();
+    }
+}
+
+// Checkout process
+function checkout() {
+    let cart = JSON.parse(localStorage.getItem('coffeeCart') || '[]');
+    if (cart.length === 0) {
+        alert('Your cart is empty! Add some items first.');
+        return;
+    }
+    alert('Thank you for your purchase! 🎉 Your order has been placed.');
+    localStorage.removeItem('coffeeCart');
+    loadCart();
+}
+
+// Initialize cart on page load
+loadCart();
+</script>
+
+</body>
+</html>
